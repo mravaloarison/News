@@ -4,7 +4,7 @@ import NewsComponent from "./NewsComponent";
 function App() {
   return (
     <div>
-      <header className="lg:px-8 lg:py-5 p-4 bg-blue-600 text-slate-50">
+      <header className="lg:px-8 lg:py-3 p-2 bg-blue-600 text-slate-50">
         <div className="flex justify-between">
           <a href="/" className="flex justify-center items-center text-xl font-semibold">
             <span className="px-2.5 py-1.5 border border-white rounded-bl">Latest</span>
@@ -17,7 +17,7 @@ function App() {
         </div>
       </header>
       <NewsComponent />
-      <footer className="w-full flex justify-center items-center">
+      <footer className="w-full flex justify-center items-center bg-white">
         <div className="p-8 text-xs text-gray-400">
           © Latest News 2023, by Mami.
         </div>

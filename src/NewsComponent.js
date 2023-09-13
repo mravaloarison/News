@@ -16,6 +16,7 @@ function NewsComponent() {
     { name: "technology", emoji: "👨‍💻" }
   ];
   
+  
   useEffect(() => {
     const baseUrl = 'https://newsapi.org/v2/top-headlines?';
     const apiKey = process.env.REACT_APP_API_KEY_3;
@@ -30,6 +31,7 @@ function NewsComponent() {
                 setArticles(data.articles); 
             } else {
                 console.log(data.status);
+                console.log(`${data.code} ${data.message}`);
             }
         })
         .catch((error) => {
@@ -51,6 +53,7 @@ function NewsComponent() {
               setArticles(data.articles);
             } else {
               console.log(data.status);
+              console.log(`${data.code} ${data.message}`);
             }
           })
           .catch((error) => {
@@ -63,7 +66,7 @@ function NewsComponent() {
     };
 
     return (
-        <div>
+        <div className="bg-white">
             <div className="flex flex-col justify-center items-center lg:py-10 lg:gap-8 gap-4">
 
                 <h1 className="md:text-[3rem] text-3xl md:font-thin text-gray-700 px-4 pt-6">What's on the news?</h1>
