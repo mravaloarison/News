@@ -66,7 +66,7 @@ function NewsComponent() {
         <div>
             <div className="flex flex-col justify-center items-center lg:py-10 lg:gap-8 gap-4">
 
-                <h1 className="text-[3rem] font-thin text-gray-700 px-4 pt-6">What's on the news?</h1>
+                <h1 className="md:text-[3rem] text-3xl md:font-thin text-gray-700 px-4 pt-6">What's on the news?</h1>
                 <div className="px-4 w-full max-w-lg mx-auto">
                     <form onSubmit={handleSearchSubmit} className="w-full border border-gray-300 rounded py-2.5 px-4 flex justify-between">
                         <input
