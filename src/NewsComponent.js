@@ -29,7 +29,7 @@ function NewsComponent() {
             if (data.status === 'ok') {
                 setArticles(data.articles); 
             } else {
-                console.error(data.status);
+                console.log(data.status);
             }
         })
         .catch((error) => {
@@ -50,7 +50,7 @@ function NewsComponent() {
             if (data.status === 'ok') {
               setArticles(data.articles);
             } else {
-              console.error(data.status);
+              console.log(data.status);
             }
           })
           .catch((error) => {
