@@ -29,7 +29,7 @@ function NewsComponent() {
             if (data.status === 'ok') {
                 setArticles(data.articles); 
             } else {
-                console.error('Error: Data status is not ok');
+                console.error(data.status);
             }
         })
         .catch((error) => {
