@@ -18,12 +18,7 @@ function NewsComponent() {
   
   
   useEffect(() => {
-    const baseUrl = 'https://newsapi.org/v2/top-headlines?';
-    const apiKey = process.env.REACT_APP_API_KEY_3;
-
-    const url = `${baseUrl}${selectedCategory !== 'general' ? `category=${selectedCategory}&` : ''}country=us&apiKey=${apiKey}`;
-
-
+    const url = `http://127.0.0.1:5000/category/${selectedCategory}`
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
@@ -31,7 +26,6 @@ function NewsComponent() {
                 setArticles(data.articles); 
             } else {
                 console.log(data.status);
-                console.log(`${data.code} ${data.message}`);
             }
         })
         .catch((error) => {
@@ -41,11 +35,7 @@ function NewsComponent() {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-
-        const apiKey = process.env.REACT_APP_API_KEY_3;
-    
-        const searchUrl = `https://newsapi.org/v2/everything?q=${searchInput}&sortBy=popularity&apiKey=${apiKey}`;
-    
+        const searchUrl = `http://127.0.0.1:5000/search/${searchInput}`;
         fetch(searchUrl)
           .then((response) => response.json())
           .then((data) => {
@@ -53,7 +43,6 @@ function NewsComponent() {
               setArticles(data.articles);
             } else {
               console.log(data.status);
-              console.log(`${data.code} ${data.message}`);
             }
           })
           .catch((error) => {
