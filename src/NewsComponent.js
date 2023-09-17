@@ -18,7 +18,7 @@ function NewsComponent() {
   
   
   useEffect(() => {
-    const url = `http://127.0.0.1:5000/category/${selectedCategory}`
+    const url = `https://flask-react-news.onrender.com/category/${selectedCategory}`
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
@@ -35,7 +35,7 @@ function NewsComponent() {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        const searchUrl = `http://127.0.0.1:5000/search/${searchInput}`;
+        const searchUrl = `https://flask-react-news.onrender.com/search/${searchInput}`;
         fetch(searchUrl)
           .then((response) => response.json())
           .then((data) => {
