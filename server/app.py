@@ -28,6 +28,3 @@ def search(q):
 def category(c):
     params = {'category': c, 'country': 'us'}
     return make_news_api_request('top-headlines', params)
-
-if __name__ == "__main__":
-    app.run(debug=True)
