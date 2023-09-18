@@ -5,6 +5,7 @@ function NewsComponent() {
   const [articles, setArticles] = useState([]);
   const [searchInput, setSearchInput] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('general');
+  const [loading, setLoading] = useState(false);
 
   const categories = [
     { name: "general", emoji: "🤷‍♂️" },
@@ -18,6 +19,7 @@ function NewsComponent() {
   
   
   useEffect(() => {
+    setLoading(true);
     const url = `https://flask-react-news.onrender.com/category/${selectedCategory}`
     fetch(url)
         .then((response) => response.json())
@@ -30,11 +32,15 @@ function NewsComponent() {
         })
         .catch((error) => {
             console.error('Error:', error);
+        })
+        .finally(() => {
+            setLoading(false); 
         });
     }, [selectedCategory]);
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
         const searchUrl = `https://flask-react-news.onrender.com/search/${searchInput}`;
         fetch(searchUrl)
           .then((response) => response.json())
@@ -47,7 +53,10 @@ function NewsComponent() {
           })
           .catch((error) => {
             console.error('Error:', error);
-        });
+          })
+          .finally(() => {
+            setLoading(false); // Set loading back to false when fetch is completed
+          });
     };
 
     const handleCategoryClick = (category) => {
@@ -90,21 +99,33 @@ function NewsComponent() {
                 </div>
 
             </div>
-            <ul className="grid lg:grid-cols-3 md:grid-cols-2 p-4 gap-10 md:gap-8 w-full max-w-6xl mx-auto">
-            {articles.map((article, index) => (
-                <li key={index} className="">
-                    <a className="group" href={article.url} target="_blank" rel="noopener noreferrer">
-                        <img className="w-full h-52 shadow-md bg-cover bg-center" src={article.urlToImage} alt="pic" />
-                        <h2 className="font-semibold pt-2.5">{article.title}</h2>
-                        {/* <p>{article.description}</p> */}
-                        <div className="text-gray-400 text-sm flex gap-2 divide-x pt-1.5">
-                            <p className="font-semibold">{article.source.name}</p>
-                            <p className="pl-2">By {article.author}</p>
-                        </div>
-                    </a>
-                </li>
-            ))}
-            </ul>
+                {loading ? 
+
+                <div className="w-full flex justify-center items-center">
+                    <p className="text-center text-gray-400 text-xl py-10 md:text-3xl">
+                        Loading ...
+                    </p>
+                </div>
+                :
+                <ul className="grid lg:grid-cols-3 md:grid-cols-2 p-4 gap-10 md:gap-8 w-full max-w-6xl mx-auto">
+
+                    
+                    
+                    {articles.map((article, index) => (
+                        <li key={index} className="">
+                            <a className="group" href={article.url} target="_blank" rel="noopener noreferrer">
+                                <img className="w-full h-52 shadow-md bg-cover bg-center" src={article.urlToImage} alt="pic" />
+                                <h2 className="font-semibold pt-2.5">{article.title}</h2>
+                                {/* <p>{article.description}</p> */}
+                                <div className="text-gray-400 text-sm flex gap-2 divide-x pt-1.5">
+                                    <p className="font-semibold">{article.source.name}</p>
+                                    <p className="pl-2">By {article.author}</p>
+                                </div>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+                }
         </div>
     );
 }
